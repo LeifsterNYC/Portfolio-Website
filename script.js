@@ -19,6 +19,8 @@ function handleCommand(command) {
             document.querySelector('.slot').classList.add('active');
             document.querySelector('.dongle').classList.add('active');
             break;
+        case "ML":
+            window.location.href = '/weatherml/';
         default:
             document.getElementById("output").innerHTML += `<p>Unknown command: ${command}</p>`;
     }
