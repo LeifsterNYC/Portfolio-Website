@@ -1,0 +1,2 @@
+/weatherml    /weatherml/templates/index.html 200
+/weatherml/*  /weatherml/templates/:splat.html 200
