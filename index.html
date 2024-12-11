@@ -1,13 +1,39 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <html lang="en">
-    <link href="../static/css/style.css" type="text/css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leif's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <h1>Welcome to my portfolio!</h1>
-    <a href="/weatherml/">WeatherML</a>
+    <div class="monitor">
+        <div class="crt">
+            <div class="screen">
+                <div class="terminal">
+                    <p>WELCOME TO LEIF'S PORTFOLIO</p>
+                    <p>>PROJECTS</p>
+                    <p>To see my projects</p>
+                    <div id="output"></div>
+                    <div class="input-line">
+                        <span>&gt;</span>
+                        <input type="text" id="command-input" autofocus>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dongle">
+            <svg class="wire" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+                <path d="M110 10 C 0 15, 10 50, 10 200" stroke="red" fill="transparent" stroke-width="10" />
+            </svg>
+            <div class="slot">
+                <p>Insert Cartridge</p>
+            </div>
+        </div>
+    </div>
+    <div class="cartridge-container">
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
