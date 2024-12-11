@@ -43,7 +43,7 @@ const sectionGraphs = {
 function loadGraph(g) {
     currentGraph = g;
     file = sectionGraphs[currentSectionName][currentGraph - 1];
-    const fileName = `static/graphs/${file}`;
+    const fileName = `/weatherml/static/graphs/${file}`;
     fetch(fileName)
         .then(response => {
             if (!response.ok) {
