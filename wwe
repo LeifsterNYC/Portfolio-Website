@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </div>
+            <img src="./cartridge.png" alt="Cartridge" class="cartridge" style="positionwidth: 100px; height: auto;">
         </div>
     </div>
     <div class="cartridge-container">
