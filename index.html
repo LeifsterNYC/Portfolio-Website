@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leif's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,8 +13,10 @@
             <div class="screen">
                 <div class="terminal">
                     <p>WELCOME TO LEIF'S PORTFOLIO</p>
-                    <p>>PROJECTS</p>
+                    <br>
+                    <p>> <span id="projects-link" class="clickable">PROJECTS</span></p>
                     <p>To see my projects</p>
+                    <br>
                     <div id="output"></div>
                     <div class="input-line">
                         <span>&gt;</span>
@@ -39,11 +41,23 @@
         </div>
     </div>
     <div class="cartridge-container">
-        <div class="cartridge" style="background-image: url('./cartridge1.png');"></div>
-        <div class="cartridge" style="background-image: url('./cartridge2.png');"></div>
-        <div class="cartridge" style="background-image: url('./cartridge3.png');"></div>
-        <div class="cartridge" style="background-image: url('./cartridge4.png');"></div>
+        <div id="c1" class="cartridge" data-name="WeatherML" style="background-image: url('./cartridge1.png');"></div>
+        <div id="c2" class="cartridge" data-name="Aphasia Prediction" style="background-image: url('./cartridge2.png');"></div>
+        <div id="c3" class="cartridge" data-name="N/A" style="background-image: url('./cartridge3.png');"></div>
+        <div id="c4" class="cartridge" data-name="N/A" style="background-image: url('./cartridge4.png');"></div>
     </div>
+    
     <script src="script.js"></script>
 </body>
+<footer>
+    <div class="footer-content">
+        <p>Created by Leif Rogers © 2025</p>
+        <p>
+            <a href="https://github.com/leifsternyc" target="_blank">GitHub</a> | 
+            <a href="mailto:leifrrogers@gmail.com">Contact</a> | 
+            <a href="https://www.linkedin.com/in/leifrogers/" target="_blank">LinkedIn</a>
+        </p>
+    </div>
+</footer>
+
 </html>

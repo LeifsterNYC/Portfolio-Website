@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aphasia Phrase Predictor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="back-main">
+        <a href="/" class="back-button">Back to Main Website</a>
+    </div>
+    <div class="wrapper">
+        <header>
+            <h1>Aphasia Phrase Predictor</h1>
+            <p>Helping reconstruct communication with AI.</p>
+        </header>
+        <main>
+            <form id="prediction-form">
+                <label for="aphasia-input" class="form-label">Enter an aphasic phrase:</label>
+                <input 
+                    type="text" 
+                    id="aphasia-input" 
+                    placeholder="e.g., Want go food need" 
+                    required
+                >
+                <button type="submit">Predict</button>
+            </form>
+            <div id="prediction-result" class="result"></div>
+        </main>
+        
+        <footer>
+            <p>Created by Leif © 2025</p>
+            <p>
+                <a href="https://github.com/leifsternyc" target="_blank">GitHub</a> | 
+                <a href="mailto:leifrrogers@gmail.com">Contact</a>
+            </p>
+        </footer>
+    </div>
+    <script>
+        document.getElementById("prediction-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const input = document.getElementById("aphasia-input").value.trim();
+            const resultDiv = document.getElementById("prediction-result");
+            if (input) {
+                resultDiv.textContent = `Prediction for "${input}": [placeholder]`;
+            } else {
+                resultDiv.textContent = "Please enter a phrase.";
+            }
+        });
+    </script>
+</body>
+</html>

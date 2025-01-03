@@ -135,23 +135,55 @@ body {
     }
 }
 
+.cartridge-container {
+    margin-top: 50px;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .cartridge-container .cartridge {
-    width: 100px;
-    height: 150px;
+    width: 180px;
+    height: 200px;
     background-size: cover;
+    position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: float 3s ease-in-out infinite; 
 }
 
 .cartridge-container .cartridge:hover {
-    transform: scale(1.2) translateY(-10px) rotate(20deg);
+    transform: rotateY(360deg) scale(1.2);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    animation: none;
 }
+
+.cartridge-container .cartridge::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #00ff00;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cartridge-container .cartridge:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
 
 .cartridge-container.active {
     height: 40%;
     opacity: 1;
     transition: height 0.6s ease;
+    pointer-events: all;
 }
 
 .dongle.active {
@@ -160,10 +192,16 @@ body {
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-.slot.active {
-    border-color: #00ff00;
-    box-shadow: 0 0 15px #00ff00;
+.clickable {
+    color: #00ff00;
+    cursor: pointer;
+    text-decoration: underline;
 }
+
+.clickable:hover {
+    color: #ff00ff;
+}
+
 
 .slot-text {
     position: absolute;
@@ -172,6 +210,11 @@ body {
     text-align: center;
     margin-bottom: 10px; 
     transform: translateX(-50%);
+}
+
+.slot.glow {
+    box-shadow: 0 0 20px #00ff00;
+    animation: glow 1s infinite;
 }
 
 @keyframes scanline {
@@ -224,3 +267,26 @@ input {
     font-size: 25px;
     caret-color: #00ff00;
 }
+
+footer {
+    width: 100%;
+    background: #111; 
+    color: #00ff00;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+}
+
+footer .footer-content a {
+    color: #00ff00;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+footer .footer-content a:hover {
+    color: #ff00ff;
+}
+
