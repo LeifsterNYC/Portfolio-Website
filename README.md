@@ -1,21 +1,21 @@
-🖥️ Personal Portfolio
+#🖥️ Personal Portfolio
 Welcome to my Personal Portfolio! This project showcases my work, projects, and skills in a unique, interactive terminal experience.
 
-📂 Features
+#📂 Features
 Interactive Terminal: A command-line-inspired interface for a unique browsing experience.
 Dynamic Navigation: Use commands or click elements to explore different sections of the portfolio.
 Project Cartridges: Insert cartridges (e.g., WeatherML, Aphasia Prediction) to view specific projects in detail.
 State Persistence: The site remembers if you've opened the projects section and resets cartridge states upon returning.
 Responsive Design: Optimized for desktop and mobile devices.
 
-🛠️ Technologies Used
+#🛠️ Technologies Used
 Frontend:
 HTML, CSS, JavaScript
 Vanilla JS for interactivity
 State Management:
 localStorage for state persistence.
 
-🚀 How to Use
+#🚀 How to Use
 Host locally, or visit at leifsternyc.netlify.app
 Navigate the Portfolio
 Command Line Interface:
@@ -25,11 +25,11 @@ Click on cartridges like WeatherML or Aphasia Prediction to explore detailed pro
 Projects Section:
 Clicking the "Projects" link opens a list of available projects.
 
-📑 Commands
+#📑 Commands
 PROJECTS - Opens the projects section.
 Other inputs - Responds with a message for unrecognized commands.
 
-🧑‍💻 Projects
+#🧑‍💻 Projects
 1. WeatherML
 A project focused on using machine learning to predict weather patterns.
 2. Aphasia Prediction
