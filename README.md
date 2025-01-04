@@ -34,3 +34,10 @@ Other inputs - Responds with a message for unrecognized commands.
 A project focused on using machine learning to predict weather patterns.
 2. Aphasia Prediction
 Deep learning to assist with aphasic speech translation.
+
+# 📧 Contact
+If you’d like to connect or collaborate, feel free to reach out:
+
+Email: leifrrogers@gmail.com
+LinkedIn: linkedin.com/in/leifrogers
+GitHub: github.com/leifsternyc
