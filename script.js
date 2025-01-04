@@ -8,13 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const aphasia = document.getElementById("c2");
     const projectsLink = document.querySelector(".terminal p span");
 
-    function revealBrushCircle() {
-        const brushCircle = document.getElementById("brush-circle");
-        brushCircle.classList.remove("hidden");
-    }
-
-    setTimeout(revealBrushCircle, 3000);
-
     commandInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
             const command = e.target.value.trim().toUpperCase();
