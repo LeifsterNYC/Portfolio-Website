@@ -30,10 +30,8 @@ PROJECTS - Opens the projects section.
 Other inputs - Responds with a message for unrecognized commands.
 
 # 🧑‍💻 Projects
-1. WeatherML
-A project focused on using machine learning to predict weather patterns.
-2. Aphasia Prediction
-Deep learning to assist with aphasic speech translation.
+1. WeatherML: A project focused on using machine learning to predict weather patterns.
+2. Aphasia Prediction: Deep learning to assist with aphasic speech translation.
 
 # 📧 Contact
 If you’d like to connect or collaborate, feel free to reach out:
