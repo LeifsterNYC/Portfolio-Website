@@ -30,24 +30,13 @@
         </main>
         
         <footer>
-            <p>Created by Leif © 2025</p>
+            <p>Created by Leif Rogers © 2025</p>
             <p>
                 <a href="https://github.com/leifsternyc" target="_blank">GitHub</a> | 
                 <a href="mailto:leifrrogers@gmail.com">Contact</a>
             </p>
         </footer>
     </div>
-    <script>
-        document.getElementById("prediction-form").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const input = document.getElementById("aphasia-input").value.trim();
-            const resultDiv = document.getElementById("prediction-result");
-            if (input) {
-                resultDiv.textContent = `Prediction for "${input}": [placeholder]`;
-            } else {
-                resultDiv.textContent = "Please enter a phrase.";
-            }
-        });
-    </script>
+    <script src="inference.js"></script>
 </body>
 </html>
