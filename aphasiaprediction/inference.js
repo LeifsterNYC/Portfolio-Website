@@ -14,7 +14,6 @@ document.getElementById("prediction-form").addEventListener("submit", async func
         body: JSON.stringify({ input })
       })
       const result = await response.json()
-      console.log(result);
       if (Array.isArray(result) && result[0]?.generated_text) {
         resultDiv.textContent = result[0].generated_text
       } else {

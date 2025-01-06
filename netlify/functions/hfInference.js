@@ -33,7 +33,6 @@ exports.handler = async (event) => {
         }
       )
       const result = await response.json()
-      console.log(process.env.HF_API_TOKEN);
       return {
         statusCode: 200,
         body: JSON.stringify(result)
