@@ -45,10 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 slot.classList.add("active");
                 break;
 
-            case "ML":
-                appendOutput("Insert the cartridge for Machine Learning...");
-                break;
-
             default:
                 appendOutput(`Unknown command: ${command}`);
         }
@@ -60,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function cartridgeInserted(cartridge) {
-        slot.classList.add("glow");
         document.querySelector(".slot-text").innerHTML = "Cartridge inserted!";
         appendOutput(`Cartridge inserted: ${cartridge}`);
         appendOutput(`Redirecting to ${cartridge} project...`);
