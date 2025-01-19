@@ -9,8 +9,8 @@ Welcome to my **Personal Portfolio**! This project showcases my work, projects, 
 - **Interactive Terminal**: A command-line-inspired interface for a unique browsing experience.  
 - **Dynamic Navigation**: Use commands or click elements to explore different sections of the portfolio.  
 - **Project Cartridges**: Insert cartridges (e.g., *WeatherML*, *Aphasia Prediction*) to view specific projects in detail.  
-- **State Persistence**: The site remembers if you've opened the projects section and resets cartridge states upon returning.  
-- **Responsive Design**: Optimized for desktop and mobile devices.
+- **State Persistence**: The site remembers if you've opened the projects section and resets cartridge states upon returning. 
+- **Responsive Design**: Optimized for desktop and mobile devices (WIP)
 
 ---
 
