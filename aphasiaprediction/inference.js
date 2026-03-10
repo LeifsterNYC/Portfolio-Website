@@ -8,14 +8,14 @@ document.getElementById("prediction-form").addEventListener("submit", async func
     }
     resultDiv.textContent = "Predicting..."
     try {
-      const response = await fetch("/.netlify/functions/hfInference", {
+      const response = await fetch("/api/hfInference", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ input })
       })
       const result = await response.json()
-      if (Array.isArray(result) && result[0]?.generated_text) {
-        resultDiv.textContent = result[0].generated_text
+      if (result.generated_text) {
+        resultDiv.textContent = result.generated_text
       } else {
         resultDiv.textContent = "No valid prediction found."
       }
