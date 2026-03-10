@@ -8,54 +8,80 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="monitor">
-        <div class="crt">
-            <div class="screen">
-                <div class="terminal">
-                    <p>WELCOME TO LEIF'S PORTFOLIO</p>
-                    <br>
-                    <p>> <span id="projects-link" class="clickable">PROJECTS</span></p>
-                    <p>To see my projects</p>
-                    <br>
-                    <div id="output"></div>
-                    <div class="input-line">
-                        <span>&gt;</span>
-                        <input type="text" id="command-input" autofocus>
+    <div class="scene">
+        <div class="monitor">
+            <div class="crt">
+                <div class="screen">
+                    <div class="terminal">
+                        <p>WELCOME TO LEIF'S PORTFOLIO</p>
+                        <br>
+                        <p>> <span id="projects-link" class="clickable">PROJECTS</span></p>
+                        <p>To see my projects</p>
+                        <br>
+                        <div id="output"></div>
+                        <div class="input-line">
+                            <span>&gt;</span>
+                            <input type="text" id="command-input" autofocus>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="monitor-chin">
+                <div class="cart-slot">
+                    <div class="cart-slot-opening"></div>
+                </div>
+                <div class="monitor-badge">
+                    <svg class="monitor-logo" viewBox="0 0 24 24" width="14" height="14" fill="none">
+                        <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20c4 0 6-4 6-8s2-4 3-4" stroke="#7a7664" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11 2c2 2 2 6-1 9" stroke="#7a7664" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span class="monitor-name">Leif Classic</span>
+                </div>
+            </div>
         </div>
-        <div class="dongle">
-            <svg class="wire" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
-                <path d="M110 10 C 0 15, 10 50, 10 300" stroke="red" fill="transparent" stroke-width="10" />
-            </svg>
-            <p class="slot-text">Insert Cartridge</p>
-            <div class="slot">
-                <div class="cartridge-slot">
-                    <div class="dongle-body">
-                        <div class="dongle-head"></div>
-                        <div class="dongle-connector"></div>
+
+        <div class="shelf">
+            <div class="case-body">
+                <div class="case-rim">
+                    <span class="case-led"></span>
+                </div>
+                <div class="case-tray">
+                    <div class="cartridge" data-name="WeatherML" data-url="/weatherml/" role="button" tabindex="0">
+                        <div class="cart-body">
+                            <div class="cart-grip"></div>
+                            <div class="cart-label">
+                                <div class="cart-label-art" style="background-image: url('./cartridge1.png');"></div>
+                            </div>
+                            <div class="cart-title">WeatherML</div>
+                            <div class="cart-pins"></div>
+                        </div>
+                    </div>
+                    <div class="cartridge" data-name="Aphasia Prediction" data-url="/aphasiaprediction/" role="button" tabindex="0">
+                        <div class="cart-body">
+                            <div class="cart-grip"></div>
+                            <div class="cart-label">
+                                <div class="cart-label-art" style="background-image: url('./cartridge2.png');"></div>
+                            </div>
+                            <div class="cart-title">Aphasia</div>
+                            <div class="cart-pins"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="cartridge-container">
-        <div id="c1" class="cartridge" data-name="WeatherML" style="background-image: url('./cartridge1.png');"></div>
-        <div id="c2" class="cartridge" data-name="Aphasia Prediction" style="background-image: url('./cartridge2.png');"></div>
-    </div>
-    
+
+    <footer>
+        <div class="footer-content">
+            <p>Created by Leif Rogers &copy; 2025</p>
+            <p>
+                <a href="https://github.com/leifsternyc" target="_blank">GitHub</a> |
+                <a href="mailto:leifrrogers@gmail.com">Contact</a> |
+                <a href="https://www.linkedin.com/in/leifrogers/" target="_blank">LinkedIn</a>
+            </p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
-<footer>
-    <div class="footer-content">
-        <p>Created by Leif Rogers © 2025</p>
-        <p>
-            <a href="https://github.com/leifsternyc" target="_blank">GitHub</a> | 
-            <a href="mailto:leifrrogers@gmail.com">Contact</a> | 
-            <a href="https://www.linkedin.com/in/leifrogers/" target="_blank">LinkedIn</a>
-        </p>
-    </div>
-</footer>
-
 </html>

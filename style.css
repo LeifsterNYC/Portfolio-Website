@@ -3,6 +3,8 @@
     src: url('fonts/Perfect DOS VGA 437 Win.ttf') format('truetype');
 }
 
+/* ── Base ─────────────────────────────────────────── */
+
 body {
     margin: 0;
     padding: 0;
@@ -13,45 +15,46 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
     flex-direction: column;
 }
 
-.cartridge-container {
-    width: 100%;
-    height: 0%;
-    transition: height 0.6s ease;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
+/* ── Scene Layout ─────────────────────────────────── */
 
-.cartridge-container.active {
-    height: 40%;
-}
-
-.monitor {
-    width: 50%;
-    height: 40%;
-    max-height: 40%;
-    aspect-ratio: 4 / 3;
-    background: #928e71;
-    border: 40px solid #e7e7bc;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px #fff;
-    position: relative;
+.scene {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    transition: height 0.3s ease;
+    max-width: 1200px;
+    width: 100%;
+    padding: 100px 20px 20px;
+    box-sizing: border-box;
+    flex: 1;
 }
+
+/* ── Monitor ──────────────────────────────────────── */
+
+.monitor {
+    width: 55%;
+    max-width: 700px;
+    background: #928e71;
+    border: 30px solid #e7e7bc;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transition: margin 0.6s ease;
+}
+
 .crt {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 4 / 3;
     background: #000;
     border: 5px solid #333;
     border-radius: 8px;
@@ -63,7 +66,7 @@ body {
     overflow: hidden;
 }
 
-.crt:after {
+.crt::after {
     content: '';
     position: absolute;
     top: 0;
@@ -83,145 +86,72 @@ body {
     animation: scanline 0.1s infinite;
 }
 
-.dongle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 90%;
-    left: 0%;
-    transform: translateX(-50%);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-
-.cable {
-    width: 4px;
-    height: 50px;
-    background: black;
-    margin: 0 auto;
-    position: relative;
-}
-
-.slot {
-    position: absolute;
-    bottom: 0px;
-    left: 14px;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 20px;
-    background: black;
-    border: 3px solid #555;
-    border-radius: 5px;
-    text-align: center;
-    display: flex;
-    vertical-align: text-top;
-    justify-content: center;
-    align-items: flex-end;
-    line-height: 20px;
-    font-size: 12px;
-    border: 10px solid #e7e7bc;
-    padding: 10px;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-.cartridge-container {
-    margin-top: 50px;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.cartridge-container .cartridge {
-    width: 180px;
-    height: 200px;
-    background-size: cover;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: float 3s ease-in-out infinite; 
-}
-
-.cartridge-container .cartridge:hover {
-    transform: rotateY(360deg) scale(1.2);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    animation: none;
-}
-
-.cartridge-container .cartridge::after {
-    content: attr(data-name);
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: #00ff00;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    opacity: 0;
-    visibility: hidden;
-    white-space: nowrap;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.cartridge-container .cartridge:hover::after {
-    opacity: 1;
-    visibility: visible;
-}
-
-
-.cartridge-container.active {
-    height: 40%;
-    opacity: 1;
-    transition: height 0.6s ease;
-    pointer-events: all;
-}
-
-.dongle.active {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.clickable {
-    color: #00ff00;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.clickable:hover {
-    color: #ff00ff;
-}
-
-
-.slot-text {
-    position: absolute;
-    bottom: -50px;
-    left: 24px;
-    text-align: center;
-    margin-bottom: 10px; 
-    transform: translateX(-50%);
-}
-
-.slot.glow {
-    box-shadow: 0 0 20px #00ff00;
-    animation: glow 1s infinite;
-}
-
 @keyframes scanline {
     0% { opacity: 0.8; }
     50% { opacity: 1; }
     100% { opacity: 0.8; }
 }
+
+/* ── Monitor Chin ────────────────────────────────── */
+
+.monitor-chin {
+    background: #e7e7bc;
+    margin: 30px -30px -30px;
+    padding: 16px 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ── Cart Slot (drive bay in chin) ───────────────── */
+
+.cart-slot {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 20;
+}
+
+.cart-slot-opening {
+    width: 110px;
+    height: 4px;
+    background: #0a0a0a;
+    border-radius: 1px;
+    box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, 0.9),
+        0 1px 0 rgba(255, 255, 255, 0.08);
+    border: 1px solid #5a5640;
+    position: relative;
+    z-index: 25;
+}
+
+.cart-slot.receiving .cart-slot-opening {
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 12px #00ff00, 0 0 24px #00ff00;
+    border-color: #00ff00;
+}
+
+/* ── Monitor Badge ───────────────────────────────── */
+
+.monitor-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.monitor-logo {
+    flex-shrink: 0;
+}
+
+.monitor-name {
+    font-size: 10px;
+    color: #6a6652;
+    letter-spacing: 2px;
+    font-family: 'Px437', monospace;
+}
+
+/* ── Screen / Terminal ────────────────────────────── */
 
 .screen {
     padding: 20px;
@@ -268,15 +198,307 @@ input {
     caret-color: #00ff00;
 }
 
+.clickable {
+    color: #00ff00;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.clickable:hover {
+    color: #ff00ff;
+}
+
+/* ── Cartridge Case ───────────────────────────────── */
+
+.shelf {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateX(40px);
+    pointer-events: none;
+    transition: width 0.6s ease, opacity 0.6s ease, transform 0.6s ease, margin-left 0.6s ease;
+    position: relative;
+    flex-shrink: 0;
+    margin-left: 0;
+}
+
+.shelf.active {
+    width: 30%;
+    opacity: 1;
+    overflow: visible;
+    transform: translateX(0);
+    pointer-events: all;
+    margin-left: 40px;
+}
+
+.case-body {
+    background: linear-gradient(180deg, #d8d4c0 0%, #c8c4ae 30%, #bbb7a0 100%);
+    border-radius: 8px;
+    position: relative;
+    box-shadow:
+        3px 3px 0 #9e9a86,
+        -1px -1px 0 #eae7d6,
+        0 6px 20px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Molded plastic texture */
+.case-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.015) 2px,
+            rgba(0, 0, 0, 0.015) 4px
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Thick molded rim at top */
+.case-rim {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 14px 20px;
+    background: linear-gradient(180deg, #d8d4c0 0%, #ccc8b2 100%);
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+}
+
+.case-led {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #2a2a2a;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shelf.active .case-led {
+    background: #ff2200;
+    box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.2),
+        0 0 4px #ff2200,
+        0 0 10px rgba(255, 34, 0, 0.4);
+    animation: led-pulse 2s ease-in-out infinite;
+}
+
+@keyframes led-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Recessed tray well */
+.case-tray {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 24px 20px 28px;
+    margin: 0 12px 16px;
+    gap: 12px;
+    background: linear-gradient(180deg, #b8b4a0, #c0bca8);
+    border-radius: 4px;
+    box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+    position: relative;
+    z-index: 2;
+}
+
+/* ── Cartridge Visuals ────────────────────────────── */
+
+.cartridge {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.cartridge:focus {
+    outline: 2px solid #00ff00;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.cart-body {
+    width: 100%;
+    max-width: 120px;
+    height: 160px;
+    background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 50%, #222 100%);
+    border-radius: 8px 8px 2px 2px;
+    position: relative;
+    box-shadow:
+        2px 0 0 #444,
+        -2px 0 0 #111,
+        0 4px 8px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.cart-grip {
+    width: 100%;
+    height: 20px;
+    background: repeating-linear-gradient(
+        90deg,
+        #3a3a3a,
+        #3a3a3a 3px,
+        #2e2e2e 3px,
+        #2e2e2e 6px
+    );
+    border-radius: 8px 8px 0 0;
+    flex-shrink: 0;
+}
+
+.cart-label {
+    width: 75%;
+    height: 70px;
+    margin-top: 6px;
+    background: #ddd;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.cart-label-art {
+    width: 100%;
+    height: 100%;
+    background-size: 200%;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+}
+
+.cart-title {
+    font-family: 'Px437', monospace;
+    font-size: 10px;
+    color: #aaa;
+    text-align: center;
+    margin-top: 4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.cart-pins {
+    width: 66%;
+    height: 14px;
+    margin-top: auto;
+    margin-bottom: 2px;
+    background: repeating-linear-gradient(
+        90deg,
+        #b8962e,
+        #b8962e 4px,
+        #222 4px,
+        #222 6px
+    );
+    border-radius: 0 0 2px 2px;
+    flex-shrink: 0;
+}
+
+/* Hover — cartridge lifts out of the slot */
+.cartridge:hover {
+    transform: translateY(-18px);
+}
+
+.cartridge:hover .cart-body {
+    box-shadow:
+        2px 0 0 #444,
+        -2px 0 0 #111,
+        0 8px 16px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(0, 255, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Dimmed state for non-selected cartridges */
+.cartridge.dimmed {
+    filter: brightness(0.4);
+    pointer-events: none;
+}
+
+/* ── Flight Animation ─────────────────────────────── */
+
+.cart-flying {
+    position: fixed;
+    z-index: 1000;
+    will-change: transform;
+    pointer-events: none;
+}
+
+.cart-inserted {
+    position: absolute;
+    /* top set dynamically by JS */
+    left: 50%;
+    transform: translateX(-50%);
+    clip-path: inset(0 0 82% 0);
+    z-index: 19;
+    pointer-events: none;
+}
+
+/* ── CRT Flicker ──────────────────────────────────── */
+
+@keyframes crt-flicker {
+    0%   { opacity: 1; }
+    10%  { opacity: 0.3; }
+    20%  { opacity: 1; }
+    30%  { opacity: 0.5; }
+    40%  { opacity: 1; }
+    55%  { opacity: 0.2; }
+    65%  { opacity: 1; }
+    80%  { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.crt.flickering {
+    animation: crt-flicker 0.5s ease-in-out;
+}
+
+/* ── Boot Progress Bar ────────────────────────────── */
+
+.boot-progress-bar {
+    width: 80%;
+    height: 14px;
+    background: #111;
+    border: 1px solid #00ff00;
+    margin-top: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.boot-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #00ff00;
+    transition: width 1.2s linear;
+}
+
+/* ── Footer ───────────────────────────────────────── */
+
 footer {
     width: 100%;
-    background: #111; 
+    background: #111;
     color: #00ff00;
     text-align: center;
     padding: 20px 0;
-    position: fixed; 
-    bottom: 0;
-    left: 0;
 }
 
 footer .footer-content a {
@@ -290,3 +512,201 @@ footer .footer-content a:hover {
     color: #ff00ff;
 }
 
+/* ── Touch devices ────────────────────────────────── */
+
+@media (hover: none) {
+    .cartridge:hover {
+        transform: none;
+    }
+
+    .cartridge:hover .cart-body {
+        box-shadow:
+            2px 0 0 #444,
+            -2px 0 0 #111,
+            0 4px 8px rgba(0, 0, 0, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .cartridge:active {
+        transform: scale(0.95);
+    }
+
+    .cartridge:active .cart-body {
+        box-shadow:
+            2px 0 0 #444,
+            -2px 0 0 #111,
+            0 2px 4px rgba(0, 0, 0, 0.6),
+            0 0 15px rgba(0, 255, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* ── Responsive (< 1024px) — small desktop / tablet ─ */
+
+@media (max-width: 1024px) {
+    .monitor {
+        border-width: 24px;
+        padding: 24px;
+    }
+
+    .monitor-chin {
+        margin: 24px -24px -24px;
+        padding: 12px 24px 16px;
+    }
+
+    .shelf.active {
+        width: 35%;
+        margin-left: 24px;
+    }
+}
+
+/* ── Responsive (< 768px) — large phone ─────────── */
+
+@media (max-width: 768px) {
+    .scene {
+        flex-direction: column;
+        padding: 30px 10px 10px;
+    }
+
+    .monitor {
+        width: 90%;
+        border-width: 18px;
+        padding: 18px;
+        flex-shrink: 1;
+    }
+
+    .shelf {
+        transform: translateY(30px);
+    }
+
+    .shelf.active {
+        width: 85%;
+        margin-left: 0;
+        margin-top: 20px;
+        transform: translateY(0);
+    }
+
+    .case-rim {
+        padding: 12px 16px;
+    }
+
+    .case-tray {
+        padding: 20px 16px 24px;
+        margin: 0 10px 14px;
+    }
+
+    .monitor-chin {
+        margin: 18px -18px -18px;
+        padding: 10px 18px 12px;
+        gap: 8px;
+    }
+
+    .cart-slot-opening {
+        width: 90px;
+    }
+
+    .monitor-name {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    .monitor-logo {
+        width: 12px;
+        height: 12px;
+    }
+
+    .cart-body {
+        max-width: 100px;
+        height: 135px;
+    }
+
+    .cart-label {
+        height: 55px;
+    }
+
+    footer {
+        position: relative;
+    }
+
+    input {
+        font-size: 18px;
+    }
+
+    body {
+        font-size: 18px;
+    }
+}
+
+/* ── Responsive (< 480px) — small phone ──────────── */
+
+@media (max-width: 480px) {
+    .monitor {
+        width: 95%;
+        border-width: 12px;
+        padding: 12px;
+    }
+
+    .shelf.active {
+        width: 90%;
+    }
+
+    .case-rim {
+        padding: 10px 14px;
+    }
+
+    .case-tray {
+        padding: 16px 12px 20px;
+        margin: 0 8px 12px;
+        gap: 8px;
+    }
+
+    .monitor-chin {
+        margin: 12px -12px -12px;
+        padding: 8px 12px 10px;
+        gap: 6px;
+    }
+
+    .cart-slot-opening {
+        width: 70px;
+    }
+
+    .monitor-name {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .monitor-logo {
+        width: 10px;
+        height: 10px;
+    }
+
+    .cart-body {
+        max-width: 90px;
+        height: 120px;
+    }
+
+    .cart-label {
+        height: 48px;
+    }
+
+    .cart-title {
+        font-size: 8px;
+    }
+
+    .screen {
+        padding: 10px;
+    }
+
+    body {
+        font-size: 15px;
+    }
+
+    input {
+        font-size: 15px;
+    }
+
+    footer {
+        padding: 12px 0;
+        font-size: 13px;
+    }
+}
