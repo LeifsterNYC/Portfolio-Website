@@ -3,40 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aphasia Phrase Predictor</title>
+    <title>Aphasia Phrase Predictor — Broken speech, restored</title>
+    <meta name="description" content="A fine-tuned seq2seq model that restores fragmented, aphasic phrases into fluent sentences.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="back-main">
-        <a href="/" class="back-button">Back to Main Website</a>
-    </div>
-    <div class="wrapper">
-        <header>
-            <h1>Aphasia Phrase Predictor (WIP)</h1>
-            <p>Helping reconstruct communication with AI.</p>
-        </header>
-        <main>
-            <form id="prediction-form">
-                <label for="aphasia-input" class="form-label">Enter an aphasic phrase:</label>
-                <input 
-                    type="text" 
-                    id="aphasia-input" 
-                    placeholder="e.g., Want eat food now" 
-                    required
-                >
-                <button type="submit">Predict</button>
-            </form>
-            <div id="prediction-result" class="result"></div>
-        </main>
-        
-        <footer>
-            <p>Created by Leif Rogers © 2025</p>
-            <p>
-                <a href="https://github.com/leifsternyc" target="_blank">GitHub</a> | 
-                <a href="mailto:leifrrogers@gmail.com">Contact</a>
+    <div class="grain" aria-hidden="true"></div>
+    <span class="pilcrow" aria-hidden="true">¶</span>
+
+    <header class="masthead reveal" style="--d: 0">
+        <a class="back" href="/">&larr; leifrogers.dev</a>
+        <span class="tag">Experiment 02 &mdash; seq2seq</span>
+    </header>
+
+    <main class="page">
+        <section class="hero">
+            <h1 class="reveal" style="--d: 1">
+                Broken speech,<br>
+                <em class="restored">restored<svg class="underline" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"><path d="M4 11 C 60 3, 150 14, 296 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></em><span class="period">.</span>
+            </h1>
+            <p class="lede reveal" style="--d: 2">
+                Aphasia, often caused by stroke, can strip sentences down to
+                fragments&nbsp;&mdash; the meaning intact, the grammar gone. This model
+                reads the fragments and writes the sentence back.
             </p>
-        </footer>
-    </div>
+        </section>
+
+        <section class="desk reveal" style="--d: 3" aria-label="Try the model">
+            <form id="prediction-form">
+                <label for="aphasia-input" class="desk-label">Aphasic transcript</label>
+                <div class="input-row">
+                    <input
+                        type="text"
+                        id="aphasia-input"
+                        placeholder="want eat food now"
+                        autocomplete="off"
+                        spellcheck="false"
+                        maxlength="200"
+                        required
+                    >
+                    <button type="submit" id="restore-btn">
+                        <span class="btn-text">Restore</span>
+                        <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+                    </button>
+                </div>
+            </form>
+            <div class="samples" role="group" aria-label="Example phrases">
+                <span class="samples-label">or try:</span>
+                <button type="button" class="chip">i i want uh go store now</button>
+                <button type="button" class="chip">he go not work today</button>
+                <button type="button" class="chip">coffee um morning need me</button>
+            </div>
+        </section>
+
+        <section id="sheet" class="sheet" aria-live="polite" hidden>
+            <span class="sheet-stamp" aria-hidden="true">restored</span>
+            <p id="original" class="original"></p>
+            <p id="prediction-result" class="result"></p>
+        </section>
+
+        <section class="method" aria-label="How it works">
+            <h2 class="method-title reveal" style="--d: 4"><em>How it works</em></h2>
+            <ol class="steps">
+                <li class="reveal" style="--d: 5">
+                    <span class="step-no">01</span>
+                    <h3>Corrupt</h3>
+                    <p>52,989 training pairs are made by breaking fluent
+                    sentences the way aphasia does&nbsp;&mdash; dropped function words,
+                    fillers, repetitions, swapped prepositions&nbsp;&mdash; while always
+                    preserving negation, so meaning never inverts.</p>
+                </li>
+                <li class="reveal" style="--d: 6">
+                    <span class="step-no">02</span>
+                    <h3>Train</h3>
+                    <p>A <span class="m">flan&#8209;t5&#8209;base</span> sequence&#8209;to&#8209;sequence model
+                    is fine&#8209;tuned to map each fragment back to its source
+                    sentence, with the best checkpoint selected by BLEU on a
+                    leakage&#8209;safe held&#8209;out split.</p>
+                </li>
+                <li class="reveal" style="--d: 7">
+                    <span class="step-no">03</span>
+                    <h3>Restore</h3>
+                    <p>On held&#8209;out fragments the tuned model scores
+                    <span class="m">BLEU&nbsp;47.0</span>; the same model untuned scores
+                    <span class="m">0.6</span>. Essentially all of the repair
+                    behaviour comes from the fine&#8209;tune.</p>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer class="reveal" style="--d: 8">
+        <p>Leif Rogers &copy; 2026</p>
+        <nav>
+            <a href="https://github.com/LeifsterNYC/AphasiaModels" target="_blank" rel="noopener">Model code</a>
+            <a href="https://github.com/leifsternyc" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:leifrrogers@gmail.com">Contact</a>
+        </nav>
+    </footer>
+
     <script src="inference.js"></script>
 </body>
 </html>
