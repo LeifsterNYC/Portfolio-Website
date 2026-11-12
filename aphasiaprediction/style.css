@@ -200,27 +200,12 @@ h1 .period { color: var(--paper); }
 #restore-btn:disabled { opacity: 0.55; cursor: wait; }
 
 .samples {
-    display: grid;
-    gap: 0.55rem;
-    margin-top: 1.4rem;
-    font-size: 0.78rem;
-}
-.sample-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem 0.6rem;
-    /* The label hangs in the left margin so wrapped chips stay aligned. */
-    padding-left: 10.1rem;
-}
-.sample-row .samples-label { flex: 0 0 9.5rem; margin-left: -10.1rem; }
-.sample-row--limits .chip { border-style: dashed; }
-.samples-note {
-    margin: 0.5rem 0 0;
-    max-width: 46rem;
-    color: var(--cream-60);
-    font-size: 0.72rem;
-    line-height: 1.6;
+    gap: 0.6rem;
+    margin-top: 1.1rem;
+    font-size: 0.78rem;
 }
 .samples-label { color: var(--cream-30); font-style: italic; }
 .chip {
@@ -377,7 +362,7 @@ h1 .period { color: var(--paper); }
     color: var(--cream-60);
 }
 
-.steps .m, .samples-note .m { color: var(--cream); white-space: nowrap; }
+.steps .m { color: var(--cream); white-space: nowrap; }
 
 /* ——— footer ——— */
 
@@ -417,8 +402,6 @@ footer a:hover { color: var(--red); }
 @media (max-width: 700px) {
     .steps { grid-template-columns: 1fr; gap: 2.2rem; }
     .input-row { flex-direction: column; }
-    .sample-row { padding-left: 0; }
-    .sample-row .samples-label { flex-basis: 100%; margin-left: 0; }
     #restore-btn { padding: 1rem 1.5rem; justify-content: center; }
     .sheet { padding: 2.2rem 1.6rem 2.2rem 2.6rem; }
     .sheet::before { left: 1.8rem; }
