@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aphasia Phrase Predictor — Broken speech, restored</title>
-    <meta name="description" content="A fine-tuned seq2seq model that restores fragmented, aphasic phrases into fluent sentences.">
+    <meta name="description" content="A fine-tuned flan-t5-large model that restores fragmented, aphasic phrases into fluent sentences.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
     <div class="grain" aria-hidden="true"></div>
@@ -39,7 +39,7 @@
                     <input
                         type="text"
                         id="aphasia-input"
-                        placeholder="want eat food now"
+                        placeholder="wife visit tomorrow morning"
                         autocomplete="off"
                         spellcheck="false"
                         maxlength="200"
@@ -52,10 +52,39 @@
                 </div>
             </form>
             <div class="samples" role="group" aria-label="Example phrases">
-                <span class="samples-label">or try:</span>
-                <button type="button" class="chip">i i want uh go store now</button>
-                <button type="button" class="chip">he go not work today</button>
-                <button type="button" class="chip">coffee um morning need me</button>
+                <div class="sample-row">
+                    <span class="samples-label">Fillers &amp; repeats</span>
+                    <button type="button" class="chip">i i want uh go store now</button>
+                    <button type="button" class="chip">um um doctor say uh rest three day</button>
+                    <button type="button" class="chip">me wife cook cook soup yesterday</button>
+                </div>
+                <div class="sample-row">
+                    <span class="samples-label">Negation</span>
+                    <button type="button" class="chip">he go not work today</button>
+                    <button type="button" class="chip">she no eat breakfast this morning</button>
+                    <button type="button" class="chip">not remember where put keys</button>
+                </div>
+                <div class="sample-row">
+                    <span class="samples-label">Family &amp; time</span>
+                    <button type="button" class="chip">grandson start school next month</button>
+                    <button type="button" class="chip">yesterday brother take me fishing lake</button>
+                    <button type="button" class="chip">before stroke i teacher thirty year</button>
+                </div>
+                <div class="sample-row">
+                    <span class="samples-label">Questions</span>
+                    <button type="button" class="chip">where my glasses?</button>
+                    <button type="button" class="chip">what time doctor come?</button>
+                    <button type="button" class="chip">when can go home?</button>
+                </div>
+                <div class="sample-row sample-row--limits">
+                    <span class="samples-label">Where it guesses</span>
+                    <button type="button" class="chip">book table</button>
+                    <button type="button" class="chip">no can find glasses</button>
+                    <button type="button" class="chip">sorry forget name</button>
+                </div>
+                <p class="samples-note">The last row is the honest one: two or three bare words
+                can mean several things, and the model has to pick. End a phrase with
+                <span class="m">?</span> to ask a question.</p>
             </div>
         </section>
 
@@ -71,26 +100,29 @@
                 <li class="reveal" style="--d: 5">
                     <span class="step-no">01</span>
                     <h3>Corrupt</h3>
-                    <p>52,989 training pairs are made by breaking fluent
+                    <p>186,892 training pairs are made by breaking fluent everyday
                     sentences the way aphasia does&nbsp;&mdash; dropped function words,
-                    fillers, repetitions, swapped prepositions&nbsp;&mdash; while always
-                    preserving negation, so meaning never inverts.</p>
+                    fillers, repetitions, misplaced negation&nbsp;&mdash; while never
+                    deleting a &ldquo;not&rdquo; or a &ldquo;he&rdquo;, so meaning never
+                    inverts and nobody gets invented.</p>
                 </li>
                 <li class="reveal" style="--d: 6">
                     <span class="step-no">02</span>
                     <h3>Train</h3>
-                    <p>A <span class="m">flan&#8209;t5&#8209;base</span> sequence&#8209;to&#8209;sequence model
+                    <p>A <span class="m">flan&#8209;t5&#8209;large</span> sequence&#8209;to&#8209;sequence model
                     is fine&#8209;tuned to map each fragment back to its source
-                    sentence, with the best checkpoint selected by BLEU on a
-                    leakage&#8209;safe held&#8209;out split.</p>
+                    sentence, with the best checkpoint selected by chrF on a
+                    leakage&#8209;safe held&#8209;out split, then quantized to 8&#8209;bit
+                    to answer in about a third of a second on a CPU.</p>
                 </li>
                 <li class="reveal" style="--d: 7">
                     <span class="step-no">03</span>
                     <h3>Restore</h3>
-                    <p>On held&#8209;out fragments the tuned model scores
-                    <span class="m">BLEU&nbsp;47.0</span>; the same model untuned scores
-                    <span class="m">0.6</span>. Essentially all of the repair
-                    behaviour comes from the fine&#8209;tune.</p>
+                    <p>On 60 hand&#8209;written test phrases the model scores
+                    <span class="m">chrF&nbsp;83.5</span> and gets 43% word&#8209;for&#8209;word;
+                    the previous version scored <span class="m">69.9</span> and invented
+                    a person the speaker never mentioned in 32% of them. This one
+                    does so in none.</p>
                 </li>
             </ol>
         </section>
@@ -105,6 +137,6 @@
         </nav>
     </footer>
 
-    <script src="inference.js?v=2"></script>
+    <script src="inference.js?v=3"></script>
 </body>
 </html>
